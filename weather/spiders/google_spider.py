@@ -26,8 +26,6 @@ class QuotesSpider(scrapy.Spider):
         for i, forecast in enumerate(response.css('details.DaypartDetails--DayPartDetail--2XOOV')):
             date = currentDate + datetime.timedelta(days=i)
             tempStr = forecast.css('span.DetailsSummary--highTempValue--3PjlX::text').get().replace('°', '')
-            if (tempStr == "--"):
-                tempStr = '1'
             temp = int(tempStr)
             lowTemp = int(forecast.css('span.DetailsSummary--lowTempValue--2tesQ::text').get().replace('°', ''))
             cloudyValue = forecast.css('.DetailsSummary--extendedData--307Ax::text').get()
